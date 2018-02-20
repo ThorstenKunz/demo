@@ -23,7 +23,7 @@ volumes: [
             pwd
             echo "GIT_BRANCH=${gitBranch}" >> /etc/environment
             echo "GIT_COMMIT=${gitCommit}" >> /etc/environment
-            maven test
+            mvn test
             """
         }
       }
@@ -34,7 +34,7 @@ volumes: [
     }
     stage('Build') {
       container('maven') {
-        sh "maven package"
+        sh "mvn package"
       }
     }
     stage('Create Docker images') {
