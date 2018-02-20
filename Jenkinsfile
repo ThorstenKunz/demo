@@ -27,6 +27,7 @@ volumes: [
             mvn -q -B test
             """
         }
+        junit '**/target/surefire-reports/**/*.xml'
       }
       catch (exc) {
         println "Failed to test - ${currentBuild.fullDisplayName}"
