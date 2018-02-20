@@ -7,7 +7,8 @@ podTemplate(label: label, containers: [
   containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm:latest', command: 'cat', ttyEnabled: true)
 ],
 volumes: [
-  hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
+  hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
+  nfsVolume(mountPath: '/home/jenkins/workspace/', serverAddress: '10.10.18.20', serverPath: '/k8s_prod/jenkins-agent', readOnly: false),
 ]) {
   node(label) {
     def myRepo = checkout scm
